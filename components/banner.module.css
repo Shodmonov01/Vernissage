@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+
+.banner {
+  font-family: "Noto Serif", serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  height: 240px;
+  justify-content: center;
+  border: 20px solid white;
+  border-image: url("/border.png") 30 round;
+  background-color: white;
+}
+.bannerImage {
+  object-fit: contain;
+}
+.title {
+  font-size: 28px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+}
+@media screen and (max-width: 700px) {
+  .banner {
+    height: 250px;
+    border-image: url("/border.png") 40 round;
+  }
+  .bannerImage {
+    width: 266px;
+  }
+  .title {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .banner {
+    height: auto;
+    gap: 10px;
+    border: 10px solid white;
+    border-image: url("/border.png") 20 round;
+    padding: 10px;
+  }
+  .title {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .title {
+    font-size: 16px;
+  }
+}

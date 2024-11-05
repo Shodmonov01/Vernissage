@@ -1,0 +1,49 @@
+.main {
+  display: grid;
+  background-color: white;
+  grid-template-columns: 413px 1fr;
+  overflow: hidden;
+  align-items: baseline;
+}
+.mainRight {
+  padding: 30px 0 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+.resCa {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .main {
+    grid-template-columns: 270px 1fr;
+  }
+  .mainRight {
+    padding: 20px 0 40px 20px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+  .mainRight {
+    padding: 20px;
+    gap: 40px;
+  }
+  .catalogContainer {
+    display: none;
+  }
+  .resCa {
+    display: flex;
+    justify-content: center;
+  }
+}
+.stickyNavbar {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background-color: white; /* Ensure background is not transparent */
+  width: 100%; /* Make sure it spans the full width */
+}

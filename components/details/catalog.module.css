@@ -1,0 +1,43 @@
+.catalog {
+  /* width: 600px; */
+  padding: 30px;
+  padding-right: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.catalogTitle {
+  font-family: "Noto Serif", serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.catalogName {
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: black;
+}
+.catalogItem {
+  font-size: 16px;
+  margin: 10px 0;
+}
+.catalogLink {
+  text-decoration: none;
+  color: black;
+}
+@media (max-width: 1200px) {
+  .catalog {
+    padding: 20px;
+  }
+}
+@media (max-width: 1000px) {
+  .catalog {
+    box-shadow: none;
+  }
+  .catalogHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+}

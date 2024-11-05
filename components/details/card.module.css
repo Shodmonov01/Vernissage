@@ -1,0 +1,79 @@
+.card {
+  /* justify-self: center; */
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 5px 25px #0000001a;
+  padding-bottom: 20px;
+  text-decoration: none;
+}
+.cardImage {
+  width: 100%;
+  object-fit: cover;
+}
+.cardContent {
+  height: 100%;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cardCategory {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: #a5a5a5;
+}
+.cardTitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.cardLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cardPrice {
+  font-size: 24px;
+  font-weight: 800;
+  color: #e3c05c;
+}
+.linkButton {
+  font-size: 16px;
+  font-family: var(---tilda-sans);
+  display: flex;
+  gap: 0.5rem;
+  background-color: transparent;
+  border: none;
+  color: #9b9b9b;
+  cursor: pointer;
+  text-decoration: none;
+}
+.cardTitle {
+  color: black;
+}
+.linkButton:hover {
+  transform: scaleX(1.1);
+}
+.addButton {
+  width: 100%;
+  padding: 7px 0;
+  font-family: var(---tilda-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #e3c05c;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: all 0.2s ease;
+}
+.addButton:hover {
+  background-color: #e3c05c;
+  color: white !important;
+  cursor: pointer;
+}

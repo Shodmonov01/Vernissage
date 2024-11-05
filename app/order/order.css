@@ -1,0 +1,81 @@
+.order {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.orderMain {
+  background-color: white;
+  padding: 20px;
+}
+h2 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: left;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 590px;
+  margin-top: 20px;
+}
+.formGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+.formGroup div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.formContainer span {
+  color: #b9802b;
+}
+.formContainer input {
+  font-size: 18px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #e1c557;
+  padding: 10px 20px;
+  font-family: var(--sans-serif);
+}
+.formContainer select {
+  font-size: 18px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #e1c557;
+  padding: 10px 20px;
+  font-family: var(--sans-serif);
+}
+
+.button {
+  padding: 16px 20px 16px 20px;
+  font-family: var(--sans-serif);
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(
+    90deg,
+    #e1c557 0%,
+    #b1832b 26.5%,
+    #e1c562 65%,
+    #c7982e 100%
+  );
+  border-radius: 5px;
+  border: none;
+}
+@media screen and (max-width: 768px) {
+  .formGroup {
+    grid-template-columns: 1fr;
+  }
+  h2 {
+    font-size: 20px;
+  }
+}

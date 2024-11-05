@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+.contact {
+  width: 100%;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 40px;
+  background-color: #fff;
+}
+.contactTitle {
+  display: none;
+}
+.contactImage {
+  margin: 0 auto;
+  max-width: 100%;
+
+  object-fit: cover;
+}
+.contactForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 40px;
+}
+.contactForm h1 {
+  font-family: "Noto Serif", serif;
+  text-align: center;
+  font-weight: 500;
+  font-size: 36px;
+}
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.contactInput {
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  font-family: var(---tilda-sans), sans-serif;
+  font-size: 18px;
+  background-color: #f7f7f7;
+}
+.contactText {
+  margin: 10px 0 30px 0;
+  font-size: 16px;
+}
+@media (max-width: 1000px) {
+  .contactForm {
+    padding: 0;
+  }
+}
+@media (max-width: 700px) {
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 10px;
+  }
+  .contactImage {
+    width: 100%;
+    height: auto;
+  }
+  .contactTitle {
+    display: block;
+    font-family: "Noto Serif", serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 43.58px;
+    text-align: center;
+  }
+  .contactForm h1 {
+    display: none;
+  }
+  .contactForm {
+    padding: 0;
+    text-align: center;
+  }
+  .contactText {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 500px) {
+  .contactTitle {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,36 @@
+.title {
+  font-family: "Noto Serif", sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  /* line-height: 43.58px; */
+  text-align: left;
+  position: relative;
+}
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 305px;
+  height: 2px;
+  background-color: #e3c05c;
+}
+@media (max-width: 700px) {
+  .title {
+    font-size: 24px !important;
+    line-height: 1.2;
+  }
+  .title {
+    text-align: center;
+  }
+  .title::after {
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1px;
+  }
+}
+@media (max-width: 600px) {
+  .title::after {
+    width: 200px;
+  }
+}

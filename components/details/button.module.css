@@ -1,0 +1,27 @@
+.button {
+  display: inline-block;
+  font-family: var(--tilda-sans);
+  font-size: 16px;
+  width: 270px;
+  background: linear-gradient(
+    90deg,
+    #e1c557 0%,
+    #b1832b 26.5%,
+    #e1c562 65%,
+    #c7982e 100%
+  );
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+@media (max-width: 700px) {
+  .button {
+    font-size: 14px;
+  }
+}
