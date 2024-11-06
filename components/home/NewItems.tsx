@@ -38,7 +38,7 @@ const NewItems = () => {
       <Title text="Новинки" size={36} />
       <div className={styles.newItemsContent}>
         {loading && <p>Loading...</p>}
-        {data.results.slice(0, 12).map((item: any) => (
+        {data?.results.slice(0, 12).map((item: any) => (
           <Card data={item} key={item.id} />
         ))}
       </div>

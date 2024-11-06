@@ -7,6 +7,11 @@
   background-color: white;
   padding: 20px;
 }
+.orderTabs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 h2 {
   font-size: 32px;
   font-weight: 700;
@@ -70,6 +75,10 @@ h2 {
   );
   border-radius: 5px;
   border: none;
+}
+
+.button:disabled {
+  background: #e1c562;
 }
 @media screen and (max-width: 768px) {
   .formGroup {

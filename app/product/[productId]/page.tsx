@@ -5,7 +5,7 @@ import PageClient from "./page.client";
 
 export async function generateStaticParams() {
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_API + "product");
+    const res = await fetch(process.env.NEXT_PUBLIC_API + "product/");
     if (!res.ok) {
       throw new Error("Failed to fetch products");
     }
@@ -22,11 +22,10 @@ export async function generateStaticParams() {
   }
 }
 
-const Page = ({ params }: any) => {
-  const { productId } = params;
+const Page = () => {
   return (
     <div className="card">
-      <PageClient productId={productId} />
+      <PageClient />
       <ContactForm />
     </div>
   );

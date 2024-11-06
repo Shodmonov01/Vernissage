@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./navbar.module.css";
 import Catalog from "./details/Catalog";
+import Arrow from "../public/vector.svg";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -15,19 +16,11 @@ const Navbar = () => {
   const uslugRef = useRef<HTMLDivElement>(null);
   const handleDocumentClick = (event: MouseEvent) => {
     // Close catalog if clicked outside
-    if (
-      catalogRef.current &&
-      !catalogRef.current?.contains(event.target as Node) &&
-      catalog
-    ) {
+    if (catalogRef.current && !catalogRef.current?.contains(event.target as Node) && catalog) {
       setCatalog(false);
     }
     // Close uslugi if clicked outside
-    if (
-      uslugRef.current &&
-      !uslugRef.current?.contains(event.target as Node) &&
-      open
-    ) {
+    if (uslugRef.current && !uslugRef.current?.contains(event.target as Node) && open) {
       setOpen(false);
     }
   };
@@ -37,15 +30,14 @@ const Navbar = () => {
     return () => {
       document.removeEventListener("mousedown", handleDocumentClick);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [catalog, open]);
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
   const fetchSearchResults = async (query: string) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}product?q=${query}`
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API}product?q=${query}`);
       const results = await response.json();
       setSearchResults(results.results);
     } catch (error) {
@@ -84,9 +76,7 @@ const Navbar = () => {
   }, []);
   return (
     <>
-      <div
-        style={{ display: isFixed ? "block" : "none", height: "100px" }}
-      ></div>
+      <div style={{ display: isFixed ? "block" : "none", height: "100px" }}></div>
       <div
         // style={{ position: isFixed ? "fixed" : "relative", top: "100px" }}
         className={`${styles.navbar} ${isFixed ? styles.navbarFixed : ""}`}
@@ -107,10 +97,8 @@ const Navbar = () => {
               >
                 Каталог{" "}
                 <Image
-                  className={`${styles.navArrow} ${
-                    !catalog ? "" : styles.rotate
-                  }`}
-                  src="/vector.svg"
+                  className={`${styles.navArrow} ${!catalog ? "" : styles.rotate}`}
+                  src={Arrow}
                   alt="arrow"
                   width={13}
                   height={7}
@@ -122,9 +110,7 @@ const Navbar = () => {
                   overflowY: "scroll",
                   scrollbarWidth: "none",
                 }}
-                className={`${styles.catalog} ${
-                  catalog ? "" : styles.catalogHidden
-                }`}
+                className={`${styles.catalog} ${catalog ? "" : styles.catalogHidden}`}
               >
                 <Catalog title={true} />
               </div>
@@ -141,7 +127,7 @@ const Navbar = () => {
                 Услуги{" "}
                 <Image
                   className={`${styles.navArrow} ${!open ? "" : styles.rotate}`}
-                  src="/vector.svg"
+                  src={Arrow}
                   alt="arrow"
                   width={13}
                   height={7}
@@ -180,13 +166,7 @@ const Navbar = () => {
               onChange={handleSearchInput}
             />
             <button className={styles.searchButton}>
-              <Image
-                className={styles.searchIcon}
-                src="/search-icon.svg"
-                alt="search-icon"
-                width={22}
-                height={22}
-              />
+              <Image className={styles.searchIcon} src="/search-icon.svg" alt="search-icon" width={22} height={22} />
             </button>
           </div>
         </div>
@@ -194,11 +174,7 @@ const Navbar = () => {
           <div className={styles.searchResults}>
             {searchResults.length > 0 ? (
               searchResults.map((result: any) => (
-                <Link
-                  href={`/product/${result.id}`}
-                  key={result.id}
-                  className={styles.searchResultItem}
-                >
+                <Link href={`/product/${result.id}`} key={result.id} className={styles.searchResultItem}>
                   <Image
                     width={100}
                     height={100}

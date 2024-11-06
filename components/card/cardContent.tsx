@@ -5,9 +5,10 @@ import "./cardContent.css";
 import Similars from "./Similars";
 import { toast } from "react-toastify";
 import Modal from "@/components/Modal"; // Import the modal component
+import { IProduct } from "@/types/data.models";
 
 const CardContent = ({ productId }: any) => {
-  const [productData, setProductData] = useState<any>(null);
+  const [productData, setProductData] = useState<IProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [similars, setSimilars] = useState([]);
@@ -18,9 +19,7 @@ const CardContent = ({ productId }: any) => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API}product/${productId}`
-        );
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}product/${productId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product data");
         }
@@ -39,9 +38,7 @@ const CardContent = ({ productId }: any) => {
 
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const productIndex = cart?.findIndex(
-      (item: any) => item.id === productData.id
-    );
+    const productIndex = cart?.findIndex((item: any) => item.id === productData?.id);
 
     if (productIndex > -1) {
       toast.error("Товар добавлен в корзину");
@@ -106,44 +103,98 @@ const CardContent = ({ productId }: any) => {
               alt="card"
               width={610}
               height={712}
-              onClick={() =>
-                openModal(
-                  productData.images[0].image || "/example-product2.png"
-                )
-              } // Add onClick to open modal
+              onClick={() => openModal(productData.images[0].image || "/example-product2.png")} // Add onClick to open modal
             />
             <div className="cardInfo">
               <div className="cardTop">
-                <p>
-                  <span>Контакты:</span>
-                  {productData.contact}
-                </p>
-                <p>
-                  <span>Город:</span>
-                  {productData.city}
-                </p>
-                <p>
-                  <span>Издатель:</span>
-                  {productData.publisher}
-                </p>
-                <p>
-                  <span>Оригинальное название:</span>
-                  {productData.orginal_title}
-                </p>
-                <p>
-                  <span>Язык:</span>
-                  {productData.language}
-                </p>
-                <div className="btn-group">
+                <div className="price-cart">
                   <h3 className="price">{productData.price} руб.</h3>
                   <button className="btn to-cart" onClick={handleAddToCart}>
                     В корзину
                   </button>
                 </div>
+                {productData?.year && (
+                  <p className="title-text">
+                    <span>Год: </span>
+                    {productData.year}
+                  </p>
+                )}
+                {productData?.engraver && (
+                  <p className="title-text">
+                    <span>Гравер: </span>
+                    {productData.engraver}
+                  </p>
+                )}
+                {productData?.technique && (
+                  <p className="title-text">
+                    <span>Техника: </span>
+                    {productData.technique}
+                  </p>
+                )}
+                {productData?.country && (
+                  <p className="title-text">
+                    <span>Страна: </span>
+                    {productData.country}
+                  </p>
+                )}
+                {productData?.city && (
+                  <p className="title-text">
+                    <span>Город: </span>
+                    {productData.city}
+                  </p>
+                )}
+                {productData?.publisher && (
+                  <p className="title-text">
+                    <span>Выполнено для: </span>
+                    {productData.publisher}
+                  </p>
+                )}
+                {productData?.size && (
+                  <p className="title-text">
+                    <span>Размер (см): </span>
+                    {productData.size}
+                  </p>
+                )}
+                {productData?.image_size && (
+                  <p className="title-text">
+                    <span>Размер изображения: </span>
+                    {productData.image_size}
+                  </p>
+                )}
+                {productData?.orginal_title && (
+                  <p className="title-text">
+                    <span>Оригинальное название: </span>
+                    <div>{productData.orginal_title}</div>
+                  </p>
+                )}
+                {productData?.language && (
+                  <p className="title-text">
+                    <span>Язык: </span>
+                    {productData.language}
+                  </p>
+                )}
               </div>
 
               <div className="more-images">
-  
+                {/* {productData.video && (
+                  <iframe
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    width="560"
+                    height="315"
+                    // https://www.youtube.com/live/litF2nMp1Ns?si=KRDVGU076_5Nqv5D
+                    src={`https://youtube.com/embed/${getYouTubeVideoId(
+                      productData.video
+                    )}?si=-G5TBQuFmu63onhd`}
+                    // title="YouTube video player"
+                    // frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                )} */}
                 {productData.images.map((image: any, index: any) => (
                   <Image
                     key={index}
@@ -156,23 +207,25 @@ const CardContent = ({ productId }: any) => {
                   />
                 ))}
               </div>
+             
             </div>
           </div>
           <div className="description">
-            <p dangerouslySetInnerHTML={{ __html: productData.description }} />
+          {productData?.description && (
+        <p
+          className="cardDesc"
+          dangerouslySetInnerHTML={{
+            __html: productData.description,
+          }}
+        />
+      )}
           </div>
         </>
       )}
       {similars.length > 0 && <Similars cards={similars} />}
-      <Modal
-        isOpen={isModalOpen}
-        imageSrc={modalImageSrc}
-        onClose={closeModal}
-      />
+      <Modal isOpen={isModalOpen} imageSrc={modalImageSrc} onClose={closeModal} />
     </main>
   );
 };
 
 export default CardContent;
-
-

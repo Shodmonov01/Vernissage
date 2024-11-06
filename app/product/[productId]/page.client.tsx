@@ -6,18 +6,20 @@ import "./card.css";
 import Navbar from "@/components/Navbar";
 import ResponsiveCatalog from "@/components/home/ResponsiveCatalog";
 import Head from "next/head";
+import { useParams } from "next/navigation";
 
-const PageClient = ({ productId }: { productId: string }) => {
+const PageClient = () => {
   const [productData, setProductData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const params = useParams();
+  const { productId } = params;
+
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await fetch(
-          process.env.NEXT_PUBLIC_API + `product/${productId}`
-        );
+        const response = await fetch(process.env.NEXT_PUBLIC_API + `product/${productId}/`);
         if (!response.ok) {
           throw new Error("Failed to fetch product data");
         }
@@ -41,6 +43,7 @@ const PageClient = ({ productId }: { productId: string }) => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+
   return (
     <>
       <Head>

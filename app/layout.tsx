@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import localFont from "next/font/local";
 import Footer from "@/components/Footer";
-
+import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import Image from "next/image";
 import FixedContacts from "@/components/FixedContacts";
@@ -25,6 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={myFont.className}>
+      <Head>
+        <meta name="yandex-verification" content="269413a45fa00b70" />
+        <meta name="google-site-verification" content="qhgSkn_JyPlG_ILAhyGJcFfOkbg56W9XxvaGH_0pO78" />
+      </Head>
       <body>
         <ToastContainer progressClassName={"toast"} />
         <div

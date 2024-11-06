@@ -7,6 +7,7 @@ import "./order.css";
 import { toast } from "react-toastify";
 const Page = () => {
   const [countries, setCountries] = useState([]);
+  const [orderTabsMode, setOrderTabsMode] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -43,10 +44,7 @@ const Page = () => {
     // Get the products from local storage
     const products = JSON.parse(localStorage.getItem("cart") || "[]");
 
-    const price = products.reduce(
-      (acc: number, item: { price: number }) => acc + item.price,
-      0
-    );
+    const price = products.reduce((acc: number, item: { price: number }) => acc + item.price, 0);
     const productForSending = products.map((item: { id: string }) => {
       return { product: item.id };
     });
@@ -101,18 +99,15 @@ const Page = () => {
     };
 
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_API + "create-payment/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            amount: price,
-          }),
-        }
-      );
+      const response = await fetch(process.env.NEXT_PUBLIC_API + "create-payment/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: price,
+        }),
+      });
       const data = await response.json();
 
       if (data.confirmationUrl) {
@@ -170,131 +165,142 @@ const Page = () => {
       <ResponsiveCatalog />
       <main className="orderMain">
         <h2>Детали оплаты</h2>
-        <form className="formContainer" onSubmit={handleSubmit}>
-          <div className="formGroup">
-            <div>
-              <label htmlFor="name">
-                Имя<span>*</span>
-              </label>
-              <input
-                required
-                id="name"
-                type="text"
-                value={formData.name}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="surname">
-                Фамилия<span>*</span>
-              </label>
-              <input
-                required
-                id="surname"
-                type="text"
-                value={formData.surname}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div className="formRow">
-            <label htmlFor="country">
-              Страна/регион<span>*</span>
-            </label>
-            <select
-              id="country"
-              value={formData.country}
-              onChange={handleInputChange}
-            >
-              {countries.length > 0 &&
-                countries.map((country: { id: string; name: string }) => (
-                  <option key={country.id} value={country.id}>
-                    {country.name}
-                  </option>
-                ))}
-            </select>
-          </div>
-          <div className="formRow">
-            <label htmlFor="address">
-              Адрес <span>*</span>
-            </label>
-            <input
-              required
-              id="address"
-              type="text"
-              placeholder="Номер дома и название улицы"
-              value={formData.address}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="formRow">
-            <label htmlFor="city">
-              Населенный пункт<span>*</span>
-            </label>
-            <input
-              required
-              id="city"
-              type="text"
-              value={formData.city}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="formRow">
-            <label htmlFor="region">
-              Область / район<span>*</span>
-            </label>
-            <input
-              required
-              id="region"
-              type="text"
-              value={formData.region}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="formRow">
-            <label htmlFor="postalCode">
-              Почтовый индекс<span>*</span>
-            </label>
-            <input
-              required
-              id="postalCode"
-              type="number"
-              value={formData.postalCode}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="formRow">
-            <label htmlFor="phone">
-              Телефон<span>*</span>
-            </label>
-            <input
-              id="phone"
-              type="number"
-              placeholder="+7 (999) 999-99-99"
-              value={formData.phone}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="formRow">
-            <label htmlFor="email">
-              E-mail<span>*</span>
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-          </div>
+        <div className="orderTabs">
           <button
             style={{ cursor: "pointer" }}
             className="button"
-            type="submit"
+            disabled={!orderTabsMode}
+            onClick={() => setOrderTabsMode(false)}
           >
-            Подтвердить заказ
+            Самовывоз
           </button>
-        </form>
+          <button
+            style={{ cursor: "pointer" }}
+            disabled={orderTabsMode}
+            className="button"
+            onClick={() => setOrderTabsMode(true)}
+          >
+            Доставка
+          </button>
+        </div>
+        {!orderTabsMode ? (
+          <form className="formContainer" onSubmit={handleSubmit}>
+            <div className="formGroup">
+              <div>
+                <label htmlFor="name">
+                  Имя<span>*</span>
+                </label>
+                <input required id="name" type="text" value={formData.name} onChange={handleInputChange} />
+              </div>
+              <div>
+                <label htmlFor="surname">
+                  Фамилия<span>*</span>
+                </label>
+                <input required id="surname" type="text" value={formData.surname} onChange={handleInputChange} />
+              </div>
+            </div>
+            <div className="formRow">
+              <label htmlFor="phone">
+                Телефон<span>*</span>
+              </label>
+              <input
+                id="phone"
+                type="number"
+                placeholder="+7 (999) 999-99-99"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="formRow">
+              <label htmlFor="email">
+                E-mail<span>*</span>
+              </label>
+              <input id="email" type="email" value={formData.email} onChange={handleInputChange} />
+            </div>
+            <button style={{ cursor: "pointer" }} className="button" type="submit">
+              Подтвердить заказ
+            </button>
+          </form>
+        ) : (
+          <form className="formContainer" onSubmit={handleSubmit}>
+            <div className="formGroup">
+              <div>
+                <label htmlFor="name">
+                  Имя<span>*</span>
+                </label>
+                <input required id="name" type="text" value={formData.name} onChange={handleInputChange} />
+              </div>
+              <div>
+                <label htmlFor="surname">
+                  Фамилия<span>*</span>
+                </label>
+                <input required id="surname" type="text" value={formData.surname} onChange={handleInputChange} />
+              </div>
+            </div>
+            <div className="formRow">
+              <label htmlFor="company">Название компании (необязательно)</label>
+              <input required id="company" type="text" value={formData.company} onChange={handleInputChange} />
+            </div>
+            <div className="formRow">
+              <label htmlFor="country">
+                Страна/регион<span>*</span>
+              </label>
+              <input required id="country" type="text" value={formData.address} onChange={handleInputChange} />
+            </div>
+            <div className="formRow">
+              <label htmlFor="address">
+                Адрес <span>*</span>
+              </label>
+              <input
+                required
+                id="address"
+                type="text"
+                placeholder="Номер дома и название улицы"
+                value={formData.address}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="formRow">
+              <label htmlFor="city">
+                Населенный пункт<span>*</span>
+              </label>
+              <input required id="city" type="text" value={formData.city} onChange={handleInputChange} />
+            </div>
+            <div className="formRow">
+              <label htmlFor="region">
+                Область / район<span>*</span>
+              </label>
+              <input required id="region" type="text" value={formData.region} onChange={handleInputChange} />
+            </div>
+            <div className="formRow">
+              <label htmlFor="postalCode">
+                Почтовый индекс<span>*</span>
+              </label>
+              <input required id="postalCode" type="text" value={formData.postalCode} onChange={handleInputChange} />
+            </div>
+            <div className="formRow">
+              <label htmlFor="phone">
+                Телефон<span>*</span>
+              </label>
+              <input
+                id="phone"
+                type="number"
+                placeholder="+7 (999) 999-99-99"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="formRow">
+              <label htmlFor="email">
+                E-mail<span>*</span>
+              </label>
+              <input id="email" type="email" value={formData.email} onChange={handleInputChange} />
+            </div>
+            <button style={{ cursor: "pointer" }} className="button" type="submit">
+              Подтвердить заказ
+            </button>
+          </form>
+        )}
       </main>
     </div>
   );

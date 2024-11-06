@@ -12,26 +12,47 @@
 
   object-fit: cover;
 }
+.cardDesc p {
+  display: inline;
+}
+.cardDesc a {
+  color: #7289da;
+  text-decoration: underline;
+}
 .cardInfo {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 100%; 
 }
 .cardTop {
   display: flex;
-  padding: 20px 0 0 30px;
   flex-direction: column;
+  padding: 20px 0 0 30px;
   gap: 20px;
 }
 .cardTop p {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 5px;
-  font-size: 18px;
-  line-height: 24px;
+  display: inline;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  width: 100%;
 }
-.cardTop span {
+.title-text {
+  display: flex;
+  align-items: baseline;
+}
+
+.title-text > div {
+  display: inline;
+}
+.cardTop .title-text > span {
   font-weight: 700;
+}
+.price-cart {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 .price {
   font-size: 24px;
@@ -40,33 +61,18 @@
   text-align: left;
   color: #e3c05c;
 }
-.btn-group {
-  display: flex;
-  gap: 20px;
-  margin: 20px 0;
-}
+
 .btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
-.amount-editor {
-  display: flex;
-  align-items: center;
-  width: 145px;
-  border: 1px solid #e3c05c;
-  justify-content: space-around;
-  border-radius: 5px;
-}
-.amount-editor button {
-  padding: 10px 20px;
-  font-size: 20px;
-  color: black !important;
-}
+
+
 .to-cart {
   font-size: 16px;
   text-align: center;
-  width: 145px;
+  width: 148px;
   background-color: #e3c05c;
   border-radius: 5px;
   color: white;
@@ -90,7 +96,7 @@
   object-fit: contain;
 }
 .description {
-  margin-top: 10px;
+  margin-top: 2rem;
 }
 .similars {
   margin-top: 100px;
@@ -159,6 +165,7 @@
   }
   .cardTop p {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     font-size: 14px;
     gap: 0;
@@ -184,6 +191,7 @@
     margin-top: 20px;
   }
   .description {
+    margin-top: 1rem;
     font-size: 14px;
   }
   .btn-group {
