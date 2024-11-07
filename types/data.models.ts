@@ -18,7 +18,7 @@ export interface IProduct {
   category: ICategory;
   city: string;
   contact: string;
-  country: string;
+  county: string;
   create_at: string;
   description: string;
   engraver: string | null;
