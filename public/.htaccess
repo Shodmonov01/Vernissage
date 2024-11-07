@@ -1,18 +1,17 @@
-# Handle 404 errors by redirecting to the index.html file
-ErrorDocument 404 /index.html
-
-# Ensure non-www is used in the URL
+# Перенаправление на домен без www
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
-# Redirect all requests to the index.html file for client-side routing
+# Обработка ошибок 404: перенаправление на index.html
+ErrorDocument 404 /index.html
+
+# Перенаправление всех запросов к index.html для клиентского роутинга (SPA)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^.*$ /index.html [L,QSA]
 
-# PHP configuration
-# Set the “ea-php56” package as the default “PHP” programming language.
+# Настройка PHP
 <IfModule mime_module>
   AddHandler application/x-httpd-ea-php56 .php .php5 .phtml
 </IfModule>
