@@ -94,11 +94,10 @@ const CardContent = ({ productId }: any) => {
   //   return videoId;
   // }
 
-  function getRutubeVideoId(url) {
+  function getRutubeVideoId(url: string) {
     const match = url.match(/video\/([a-zA-Z0-9]+)/);
     return match ? match[1] : null;
   }
-
   console.log(productData);
 
   return (
