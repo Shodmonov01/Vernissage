@@ -128,6 +128,12 @@ const CardContent = ({ productId }: any) => {
                     В корзину
                   </button>
                 </div>
+                {productData?.contact && (
+                  <p className="title-text">
+                    <span>Артикул </span>
+                    {productData.contact}
+                  </p>
+                )}
                 {productData?.year && (
                   <p className="title-text">
                     <span>Год: </span>
