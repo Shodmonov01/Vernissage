@@ -14,6 +14,7 @@ interface IProductImage {
   product: number;
 }
 
+
 export interface IProduct {
   category: ICategory;
   city: string;
