@@ -1,17 +1,18 @@
-# Перенаправление на домен без www
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
-# Обработка ошибок 404: перенаправление на index.html
-ErrorDocument 404 /index.html
 
-# Перенаправление всех запросов к index.html для клиентского роутинга (SPA)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^.*$ /index.html [L,QSA]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule . /index.html [L]
+    RewriteCond %{HTTP_HOST} test\.vernissage-art\.ru [NC]
+    RewriteCond %{SERVER_PORT} 88
+    RewriteRule ^(.*)$ https://vernissage-art.ru/$1 [R,L]
+</IfModule>
 
-# Настройка PHP
-<IfModule mime_module>
-  AddHandler application/x-httpd-ea-php56 .php .php5 .phtml
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
 </IfModule>
