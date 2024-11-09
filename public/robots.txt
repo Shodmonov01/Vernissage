@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Закрытие от индексации определённых страниц или директорий
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /api/
+
+# Указание карты сайта
+Sitemap: https://vernissage-art.ru/sitemap.xml
