@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  trailingSlash: true,
   output: "export",
+  reactStrictMode: true,
+  trailingSlash: true,
   images: {
     unoptimized: true, // Disable image optimization
     remotePatterns: [

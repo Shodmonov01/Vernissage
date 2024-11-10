@@ -19,9 +19,7 @@ const CardContent = ({ productId }: any) => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API}product/${productId}`
-        );
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}product/${productId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product data");
         }
@@ -40,9 +38,7 @@ const CardContent = ({ productId }: any) => {
 
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const productIndex = cart?.findIndex(
-      (item: any) => item.id === productData?.id
-    );
+    const productIndex = cart?.findIndex((item: any) => item.id === productData?.id);
 
     if (productIndex > -1) {
       toast.error("Товар добавлен в корзину");
@@ -114,11 +110,7 @@ const CardContent = ({ productId }: any) => {
               alt="card"
               width={610}
               height={712}
-              onClick={() =>
-                openModal(
-                  productData.images[0].image || "/example-product2.png"
-                )
-              } // Add onClick to open modal
+              onClick={() => openModal(productData.images[0].image || "/example-product2.png")} // Add onClick to open modal
             />
             <div className="cardInfo">
               <div className="cardTop">
@@ -162,6 +154,12 @@ const CardContent = ({ productId }: any) => {
                   <p className="title-text">
                     <span>Город: </span>
                     {productData.city}
+                  </p>
+                )}
+                {productData?.category?.name && (
+                  <p className="title-text">
+                    <span>Категории: </span>
+                    {productData.category?.name}
                   </p>
                 )}
                 {productData?.publisher && (
@@ -224,9 +222,7 @@ const CardContent = ({ productId }: any) => {
                     }}
                     width="560"
                     height="315"
-                    src={`https://rutube.ru/play/embed/${getRutubeVideoId(
-                      productData.video
-                    )}`}
+                    src={`https://rutube.ru/play/embed/${getRutubeVideoId(productData.video)}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
@@ -261,11 +257,7 @@ const CardContent = ({ productId }: any) => {
         </>
       )}
       {similars.length > 0 && <Similars cards={similars} />}
-      <Modal
-        isOpen={isModalOpen}
-        imageSrc={modalImageSrc}
-        onClose={closeModal}
-      />
+      <Modal isOpen={isModalOpen} imageSrc={modalImageSrc} onClose={closeModal} />
     </main>
   );
 };
