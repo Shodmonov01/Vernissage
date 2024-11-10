@@ -5,7 +5,7 @@ const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
   images: {
-    unoptimized: true, // Disable image optimization
+    unoptimized: true, 
     remotePatterns: [
       {
         protocol: "http",
