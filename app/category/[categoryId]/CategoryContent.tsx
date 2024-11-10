@@ -63,10 +63,7 @@ const CategoryContent = ({ categoryId, categoriesName }: any) => {
   }, [selectedSubcategory, categoryId]);
   const handleProductClick = (productId: number) => {
     // Save scroll position before navigating
-    sessionStorage.setItem(
-      "scrollPosition",
-      JSON.stringify({ x: window.scrollX, y: window.scrollY })
-    );
+    sessionStorage.setItem("scrollPosition", JSON.stringify({ x: window.scrollX, y: window.scrollY }));
     router.push(`/product/${productId}`);
   };
   if (error) {
@@ -79,9 +76,7 @@ const CategoryContent = ({ categoryId, categoriesName }: any) => {
         <div className={styles.ancientsFilter}>
           <p
             className={`${styles.ancientsFilterItem} ${
-              selectedSubcategory === "vse" || selectedSubcategory === "all"
-                ? styles.active
-                : ""
+              selectedSubcategory === "vse" || selectedSubcategory === "all" ? styles.active : ""
             }`}
             onClick={() => setSelectedSubcategory("vse")}
           >
@@ -91,9 +86,7 @@ const CategoryContent = ({ categoryId, categoriesName }: any) => {
             categoriesName[+categoryId - 1].sub_categor.map((item: any) => (
               <p
                 key={item.id}
-                className={`${styles.ancientsFilterItem} ${
-                  +selectedSubcategory === item.id ? styles.active : ""
-                }`}
+                className={`${styles.ancientsFilterItem} ${+selectedSubcategory === item.id ? styles.active : ""}`}
                 onClick={() => setSelectedSubcategory(item.id)}
               >
                 {item.name}

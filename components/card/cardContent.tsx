@@ -94,7 +94,6 @@ const CardContent = ({ productId }: any) => {
     const match = url.match(/video\/([a-zA-Z0-9]+)/);
     return match ? match[1] : null;
   }
-  console.log(productData);
 
   return (
     <main className="mainContents">
@@ -154,12 +153,6 @@ const CardContent = ({ productId }: any) => {
                   <p className="title-text">
                     <span>Город: </span>
                     {productData.city}
-                  </p>
-                )}
-                {productData?.category?.name && (
-                  <p className="title-text">
-                    <span>Категории: </span>
-                    {productData.category?.name}
                   </p>
                 )}
                 {productData?.publisher && (

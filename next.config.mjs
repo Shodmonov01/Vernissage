@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  output: "export",
-  reactStrictMode: true,
   trailingSlash: true,
+  output: "server",
+  reactStrictMode: true,
   images: {
-    unoptimized: true, 
+    unoptimized: true, // Disable image optimization
     remotePatterns: [
       {
         protocol: "http",
@@ -20,6 +20,5 @@ const nextConfig = {
     return config;
   },
 };
-
 
 export default nextConfig;
