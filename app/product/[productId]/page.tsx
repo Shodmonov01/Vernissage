@@ -16,6 +16,7 @@ export async function generateStaticParams() {
     if (!res.ok) {
       throw new Error(`Failed to fetch products: ${res.status}`);
     }
+    
     const data = await res.json();
     if (!data?.results?.length) {
       throw new Error("No products returned from API");
