@@ -37,7 +37,7 @@ const Header = () => {
   const fetchSearchResults = async (query: string) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}product?name=${query}`
+        `${process.env.NEXT_PUBLIC_API}product?q=${query}`
       );
       const results = await response.json();
       setSearchResults(results.results);
