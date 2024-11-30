@@ -1,61 +1,70 @@
 .category {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .categoryContent {
-  padding: 40px 20px;
-  background-color: white;
+    padding: 40px 20px;
+    background-color: white;
 }
 .ancientsFilter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  row-gap: 20px;
-  margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    row-gap: 20px;
+    margin-bottom: 60px;
 }
 .ancientsFilterItem {
-  padding: 9px 16px;
-  border: 1px solid #e3c05c;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 400;
-  transition: background 0.1s ease;
-  min-width: max-content;
-  cursor: pointer;
+    padding: 9px 16px;
+    border: 1px solid #e3c05c;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    transition: background 0.1s ease;
+    min-width: max-content;
+    cursor: pointer;
+}
+.paginationContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 5px;
 }
 .active {
-  background: linear-gradient(
-    90deg,
-    #f0c74e -35.37%,
-    #ca8015 31.22%,
-    #f0c74e 85%,
-    #ca8015 135.37%
-  );
-  color: white;
-  cursor: pointer;
+    background: linear-gradient(
+        90deg,
+        #f0c74e -35.37%,
+        #ca8015 31.22%,
+        #f0c74e 85%,
+        #ca8015 135.37%
+    );
+    color: white;
+    cursor: pointer;
 }
 .cards {
-  /* margin-top: 70px; */
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  /* justify-content: space-around; */
-  justify-items: center;
-  gap: 20px;
+    /* margin-top: 70px; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    /* justify-content: space-around; */
+    justify-items: center;
+    gap: 20px;
 }
+
 @media (max-width: 768px) {
-  .ancientsContent {
-    padding: 20px 10px;
-  }
-  .ancientsFilter {
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-  }
-  .ancientsFilterItem {
-    font-size: 16px;
-    padding: 10px 22px;
-  }
-  .cards {
-    margin-top: 20px;
-  }
+    .ancientsContent {
+        padding: 20px 10px;
+    }
+    .ancientsFilter {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+    .ancientsFilterItem {
+        font-size: 16px;
+        padding: 10px 22px;
+    }
+    .cards {
+        margin-top: 20px;
+    }
 }
